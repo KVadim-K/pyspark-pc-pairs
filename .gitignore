@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+.env
+.pytest_cache/
+pytest-*
+dist/
+build/
+*.egg-info/
+
+# Mac / Windows
+.DS_Store
+Thumbs.db
+
+# Spark / Java (иногда появляются временные файлы)
+.metastore_db/
+derby.log
+
+# IDE
+.idea/
+.vscode/
+
+# editor/backup files
+*~
+*.swp
+*.swo
