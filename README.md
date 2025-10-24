@@ -62,11 +62,22 @@ python -m pip install --upgrade pip
 ```
 
 ### 2️⃣ Зависимости
+
+Проект использует современный стандарт `pyproject.toml` для управления зависимостями:
 ```bash
+# Через pip с requirements.txt
 pip install -r requirements.txt
-# или
+
+# Или установить пакет в режиме разработки
+pip install -e ".[dev]"
+
+# Или напрямую
 pip install pyspark pytest
 ```
+
+> 💡 **Рекомендуется**: использовать `pip install -e ".[dev]"` — это установит проект со всеми зависимостями из `pyproject.toml` и настроит пути автоматически.
+
+---
 
 ## 🚀 Запуск тестов и демо
 
@@ -90,6 +101,8 @@ pytest -q
 # Демо
 python demo\demo.py
 ```
+
+> 💡 Если установили проект через `pip install -e .`, переменная `PYTHONPATH` не требуется.
 
 ### 🍎 macOS / 🐧 Linux
 ```bash
@@ -136,9 +149,9 @@ pyspark-pc-pairs/
 │  └─ demo.py
 ├─ tests/
 │  └─ test_pc_pairs.py
-├─ requirements.txt
-├─ pyproject.toml
-├─ .env              # (опционально) JAVA_HOME, PYTHONPATH, SPARK_LOCAL_IP
+├─ requirements.txt          # Зависимости для pip
+├─ pyproject.toml            # Современный стандарт управления проектом
+├─ .env                      # (опционально) JAVA_HOME, PYTHONPATH, SPARK_LOCAL_IP
 └─ .github/workflows/ci.yml
 ```
 
@@ -163,6 +176,24 @@ pyspark-pc-pairs/
 | ![pytest](https://img.shields.io/badge/pytest-7+-green.svg) | 7+ |
 
 </div>
+
+### Конфигурация проекта
+
+Проект использует `pyproject.toml` для управления зависимостями и настройками:
+```toml
+[project]
+name = "pyspark-pc-pairs"
+version = "0.1.0"
+requires-python = ">=3.9"
+dependencies = [
+  "pyspark>=3.4,<4.0",
+  "pytest>=7.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+pythonpath = ["src"]
+```
 
 ---
 
